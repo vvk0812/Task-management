@@ -9,10 +9,11 @@ exports.createTask = async (req, res) => {
     if (!Title || !Description ) {
       return res.status(400).json({ Status: false, message: 'Please Fill All The Fields' });
     }
-   
+    const createdAt = new Date();
     const task = Taskdata({
             Title: Title,
             Description: Description,
+            createdAt: createdAt
         });
           await task.save();
           return res.status(200).send({ Status: true, message: 'Task Created Succesfully', task});
